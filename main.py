@@ -1,3 +1,22 @@
+"""
+NEPSE Stock Data Scraper
+========================
+
+A lightweight Python web scraper for fetching real-time Nepali stock market data
+from nepalipaisa.com.
+
+Keywords: NEPSE, Stock Market, Web Scraper, Nepal, Finance, Stock Data
+
+Author: Prasanga Pokharel
+License: MIT
+Purpose: Educational use only
+
+IMPORTANT: This tool is for educational purposes only and should not be used
+for production or real-time financial decision-making without proper validation.
+
+Disclaimer: Use at your own risk. Always verify data from official sources.
+"""
+
 import requests
 from bs4 import BeautifulSoup
 import certifi

@@ -95,6 +95,42 @@ python main.py
 
 This will fetch and display ADBL stock data by default.
 
+### Sample Output
+
+```
+=== ADBL Stock Data (as of latest scrape) ===
+
+Nepse Index                   : 2,838.40
+Nepse Change                  : 5.36
+Company Name                  : Agricultural Development Bank Limited (ADBL)
+Sector                        : Commercial Banks
+Ltp                           : 318.00
+Change                        : -0.40 (-0.13 %)
+Day Range                     : 313.10 - 322.00
+Volume                        : 29,709
+Avg 120 Days                  : 305.56
+Avg 180 Days                  : 306.56
+Vwap 180 Days                 : High
+Weeks 52 Range                : 272.30 - 344.90
+One Year Change               : High
+Share Outstanding             : 143,055,192
+Beta                          : -
+Paid Up Capital               : 14,305,519,200.00
+1 Year Price Change           : 9%
+Market Cap                    : 45,491,551,056.00
+180 Day Vwap                  : Rs. 311.15
+Eps                           : 9.89 (Q2, FY 82/83)
+30 Days Av                    : 91,829
+P E Ratio                     : 32.15
+Bvps                          : 190.14
+P B                           : 3.13
+Recent Dividend               : FY 81/82
+Last Updated                  : As of Fri, 17 Apr 2026 | 03:00:00 PM
+Dividend Fy                   : FY 81/82
+Bonus Dividend                : 3.25%
+Cash Dividend                 : 9.75%
+```
+
 ## Error Handling
 
 The scraper handles two types of errors:
@@ -135,9 +171,20 @@ pip install -r requirements.txt
 
 This project is open source and available under the MIT License.
 
+## Important Notice
+
+⚠️ **EDUCATIONAL USE ONLY** ⚠️
+
+This project is developed solely for **educational purposes**. It is not intended for production use or real-time financial decision-making due to:
+
+- **Lack of Sandbox Testing**: This scraper has not been tested in a sandboxed environment or with official APIs. Web scraping may be subject to changes in website structure without notice.
+- **No Warranty**: The author provides no guarantee about the accuracy, completeness, or timeliness of the scraped data.
+- **Terms of Service**: Users are responsible for ensuring their use of this tool complies with nepalipaisa.com's Terms of Service and applicable laws.
+- **Data Reliability**: Web-scraped data may be incomplete, delayed, or inaccurate.
+
 ## Disclaimer
 
-This tool is for educational and informational purposes only. The author is not responsible for any financial decisions made based on the data retrieved by this scraper. Always verify data from official sources before making investment decisions.
+This tool is for educational and informational purposes only. The author is not responsible for any financial decisions made based on the data retrieved by this scraper. Always verify data from official sources before making investment decisions. Use at your own risk.
 
 ## Contributing
 
