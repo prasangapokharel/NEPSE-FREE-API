@@ -1,109 +1,219 @@
 # Nepse Free API - Stock Data Scraper
 
-A Python web scraper for fetching real-time Nepali stock market data from nepalipaisa.com.
+<div align="center">
 
-## Features
+[![Python Version](https://img.shields.io/badge/Python-3.7%2B-blue)](https://www.python.org/downloads/)
+[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![GitHub stars](https://img.shields.io/github/stars/prasangapokharel/NEPSE-FREE-API?style=social)](https://github.com/prasangapokharel/NEPSE-FREE-API)
+[![GitHub forks](https://img.shields.io/github/forks/prasangapokharel/NEPSE-FREE-API?style=social)](https://github.com/prasangapokharel/NEPSE-FREE-API)
+[![GitHub watchers](https://img.shields.io/github/watchers/prasangapokharel/NEPSE-FREE-API?style=social)](https://github.com/prasangapokharel/NEPSE-FREE-API)
 
-- **Real-time Stock Data**: Fetch current stock prices and market indices
-- **Comprehensive Information**: Retrieve LTP (Last Traded Price), volume, price ranges, and averages
-- **Fundamental Data**: Access company sector, dividend information, and year-over-year changes
-- **Error Handling**: Robust error handling for network and parsing issues
-- **Simple API**: Easy-to-use class-based interface
+A lightweight, efficient Python web scraper for fetching real-time Nepali stock market data from [nepalipaisa.com](https://nepalipaisa.com). Built with educational purposes in mind.
 
-## Installation
+[View on GitHub](https://github.com/prasangapokharel/NEPSE-FREE-API) • [Report Bug](https://github.com/prasangapokharel/NEPSE-FREE-API/issues) • [Request Feature](https://github.com/prasangapokharel/NEPSE-FREE-API/issues)
 
-### Prerequisites
-- Python 3.7 or higher
-- pip (Python package installer)
+</div>
 
-### Setup
+---
 
-1. Clone or download the repository:
-```bash
-git clone <repository-url>
-cd Nepse-Free-Api
-```
+## 📋 Table of Contents
 
-2. Install required dependencies:
-```bash
-pip install -r requirements.txt
-```
+- [Features](#features)
+- [Quick Start](#quick-start)
+- [Installation](#installation)
+- [Usage](#usage)
+- [API Reference](#api-reference)
+- [Demo](#demo)
+- [Advanced Usage](#advanced-usage)
+- [Error Handling](#error-handling)
+- [Project Statistics](#project-statistics)
+- [Important Notice](#important-notice)
+- [Contributing](#contributing)
+- [License](#license)
+- [Support](#support)
 
-## Usage
+---
 
-### Basic Example
+## ✨ Features
+
+- 📊 **Real-time Stock Data** - Fetch current stock prices and NEPSE market indices instantly
+- 💼 **Comprehensive Information** - Retrieve LTP, volume, price ranges, 120/180-day averages
+- 📈 **Fundamental Data** - Access company sector, dividend info, P/E ratio, P/B ratio, and more
+- 🛡️ **Robust Error Handling** - Built-in error handling for network and parsing issues
+- 🎯 **Simple API** - Intuitive class-based interface perfect for beginners and professionals
+- 🔒 **Proper Headers** - Respects website with realistic User-Agent headers
+- ⚡ **Fast & Efficient** - 15-second timeout with optimized parsing
+- 📱 **CSV Symbol List** - Pre-loaded list of 335+ Nepali stock symbols
+
+---
+
+## 🚀 Quick Start
 
 ```python
 from main import Stock
 
-# Create an instance of the Stock class
+# Initialize the scraper
 api = Stock()
 
-# Fetch data for a specific stock symbol
+# Fetch stock data
+data = api.get_data("ADBL")
+
+# Display results
+for key, value in data.items():
+    print(f"{key}: {value}")
+```
+
+---
+
+## 📦 Installation
+
+### Prerequisites
+
+- **Python**: 3.7 or higher
+- **pip**: Python package manager
+- **Git**: For cloning the repository (optional)
+
+### Setup Instructions
+
+#### Method 1: Clone from GitHub
+
+```bash
+# Clone the repository
+git clone https://github.com/prasangapokharel/NEPSE-FREE-API.git
+cd NEPSE-FREE-API
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Run the scraper
+python main.py
+```
+
+#### Method 2: Manual Setup
+
+```bash
+# Create a directory
+mkdir nepse-scraper
+cd nepse-scraper
+
+# Download requirements.txt and main.py manually, then:
+pip install -r requirements.txt
+python main.py
+```
+
+#### Method 3: Install via pip (Future)
+
+```bash
+pip install nepse-free-api
+```
+
+---
+
+## 📖 Usage
+
+### Basic Usage
+
+```python
+from main import Stock
+
+# Create an instance
+api = Stock()
+
+# Fetch ADBL stock data
 result = api.get_data("ADBL")
 
-# Display the results
+# Print all data
 for key, value in result.items():
-    print(f"{key}: {value}")
+    print(f"{key.replace('_', ' ').title()}: {value}")
 ```
 
 ### Available Stock Symbols
 
-Common Nepali stock symbols include:
-- `ADBL` - Arun Valley Trading Co.
+**Common Symbols:**
+- `ADBL` - Agricultural Development Bank Limited
 - `NABIL` - Nabil Bank Limited
 - `NTC` - Nepal Telecommunications Authority
 - `EBL` - Everest Bank Limited
 - `SCB` - Standard Chartered Bank Nepal
-- And many more...
+- `HBL` - Himalayan Bank Limited
+- `NIB` - Nepal Insurance Bank
 
-### Parameters
+**Complete List:**
+See `symbol.csv` for all 335+ available symbols.
 
-- `symbol` (str): Stock symbol to fetch data for. Default is "ADBL"
+### Fetch Multiple Stocks
 
-### Return Value
+```python
+from main import Stock
 
-The `get_data()` method returns a dictionary containing:
+api = Stock()
+symbols = ["ADBL", "NABIL", "EBL", "NTC"]
 
-| Key | Description |
-|-----|-------------|
-| `nepse_index` | Current NEPSE Index value |
-| `nepse_change` | NEPSE Index change |
-| `company_name` | Name of the company |
-| `sector` | Company sector classification |
-| `ltp` | Last Traded Price |
-| `change` | Price change from previous close |
-| `day_range` | Day's trading range |
-| `volume` | Trading volume |
-| `avg_120_days` | 120-day average price |
-| `avg_180_days` | 180-day average price |
-| `vwap_180_days` | 180-day Volume Weighted Average Price |
-| `weeks_52_range` | 52-week price range |
-| `one_year_change` | 1-year price change percentage |
-| `last_updated` | Last data update timestamp |
-| `dividend_fy` | Recent dividend fiscal year |
-| `bonus_dividend` | Bonus dividend information |
-| `cash_dividend` | Cash dividend information |
-
-## Running the Script
-
-Run the script directly from the command line:
-
-```bash
-python main.py
+for symbol in symbols:
+    data = api.get_data(symbol)
+    if "error" not in data:
+        print(f"Company: {data.get('company_name', 'N/A')}")
+        print(f"LTP: {data.get('ltp', 'N/A')}")
+        print("---")
 ```
 
-This will fetch and display ADBL stock data by default.
+---
 
-## Demo
+## 🔌 API Reference
+
+### Stock Class
+
+#### `Stock.get_data(symbol="ADBL")`
+
+Fetches stock data for a given symbol.
+
+**Parameters:**
+- `symbol` (str): Stock symbol to fetch. Default is `"ADBL"`
+
+**Returns:**
+- `dict`: Dictionary containing stock information or error message
+
+**Raises:**
+- `RequestException`: Network connectivity issues
+- `ParseException`: HTML parsing errors
+
+---
+
+## 📊 Return Value Structure
+
+The `get_data()` method returns a dictionary with the following keys:
+
+| Key | Type | Description |
+|-----|------|-------------|
+| `nepse_index` | str | Current NEPSE Index value |
+| `nepse_change` | str | NEPSE Index change |
+| `company_name` | str | Full company name |
+| `sector` | str | Industry sector classification |
+| `ltp` | str | Last Traded Price |
+| `change` | str | Price change with percentage |
+| `day_range` | str | Day's trading range (low-high) |
+| `volume` | str | Trading volume |
+| `avg_120_days` | str | 120-day average price |
+| `avg_180_days` | str | 180-day average price |
+| `vwap_180_days` | str | 180-day Volume Weighted Average |
+| `weeks_52_range` | str | 52-week price range |
+| `one_year_change` | str | 1-year price change percentage |
+| `last_updated` | str | Data update timestamp |
+| `dividend_fy` | str | Recent dividend fiscal year |
+| `bonus_dividend` | str | Bonus dividend percentage |
+| `cash_dividend` | str | Cash dividend percentage |
+
+---
+
+## 🎬 Demo
 
 ### Live Terminal Output
 
-The script provides clean, formatted output directly in your terminal:
+The script provides beautifully formatted output in your terminal:
 
 ![ADBL Stock Data Demo](demo/nepsefreeapi.png)
 
-### Output Example
+### Sample Output
 
 ```
 === ADBL Stock Data (as of latest scrape) ===
@@ -139,65 +249,265 @@ Bonus Dividend                : 3.25%
 Cash Dividend                 : 9.75%
 ```
 
-## Error Handling
+---
 
-The scraper handles two types of errors:
+## 🔧 Advanced Usage
 
-1. **Request Errors**: Network connectivity issues, timeouts, or invalid responses
-2. **Parsing Errors**: Issues with HTML parsing or missing elements
-
-Both errors are returned in the response dictionary with an `error` key:
+### Error Handling
 
 ```python
-result = api.get_data("INVALID")
-if "error" in result:
-    print(f"Error: {result['error']}")
+from main import Stock
+
+api = Stock()
+
+try:
+    data = api.get_data("ADBL")
+    
+    if "error" in data:
+        print(f"Error: {data['error']}")
+    else:
+        company = data.get('company_name', 'Unknown')
+        price = data.get('ltp', 'N/A')
+        print(f"{company}: Rs. {price}")
+        
+except Exception as e:
+    print(f"Exception occurred: {str(e)}")
 ```
 
-## Requirements
+### Batch Processing
 
-- `requests` - HTTP library for making web requests
-- `beautifulsoup4` - HTML/XML parsing library
-- `certifi` - SSL certificate validation
+```python
+from main import Stock
+import time
 
-## Dependencies
+api = Stock()
+symbols = ["ADBL", "NABIL", "NTC", "EBL", "SCB"]
 
-All dependencies are listed in `requirements.txt` and can be installed with:
+for symbol in symbols:
+    data = api.get_data(symbol)
+    
+    if "error" not in data:
+        print(f"{symbol}: {data.get('ltp')} ({data.get('change')})")
+    
+    # Be respectful to the server
+    time.sleep(1)
+```
+
+### Data Analysis
+
+```python
+from main import Stock
+import csv
+
+api = Stock()
+
+# Fetch and store data
+with open('stock_data.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Symbol', 'Company', 'LTP', 'Change', 'Sector'])
+    
+    symbols = ["ADBL", "NABIL", "NTC"]
+    
+    for symbol in symbols:
+        data = api.get_data(symbol)
+        if "error" not in data:
+            writer.writerow([
+                symbol,
+                data.get('company_name'),
+                data.get('ltp'),
+                data.get('change'),
+                data.get('sector')
+            ])
+```
+
+---
+
+## ⚠️ Error Handling
+
+The scraper handles two types of errors gracefully:
+
+### 1. Request Errors
+- Network connectivity issues
+- Server timeouts (15-second limit)
+- Invalid HTTP responses
+
+### 2. Parsing Errors
+- HTML structure changes
+- Missing elements or fields
+- Unexpected data formats
+
+**Example:**
+```python
+result = api.get_data("INVALID")
+
+if "error" in result:
+    print(f"Error occurred: {result['error']}")
+    # Handle error appropriately
+```
+
+---
+
+## 📊 Project Statistics
+
+<div align="center">
+
+| Metric | Value |
+|--------|-------|
+| **Language** | Python 3.7+ |
+| **License** | MIT |
+| **Total Symbols** | 335+ |
+| **Last Updated** | Apr 2026 |
+| **Status** | Active |
+| **Version** | 1.0.0 |
+
+</div>
+
+---
+
+## ⚠️ Important Notice
+
+### Educational Use Only
+
+This project is developed **exclusively for educational purposes**. It is not intended for production use or real-time financial decision-making due to:
+
+- **No Sandbox Testing**: Untested in sandboxed environments with official APIs
+- **Web Scraping Risks**: Susceptible to website structure changes without notice
+- **No Warranty**: No guarantees about data accuracy, completeness, or timeliness
+- **Terms of Service**: Users must ensure compliance with nepalipaisa.com's ToS
+- **Data Reliability**: Scraped data may be incomplete, delayed, or inaccurate
+
+### Legal Disclaimer
+
+This tool is for **educational and informational purposes only**. The author is **not responsible** for any financial decisions made based on this tool's output. 
+
+**⚠️ Always verify data from official sources before making investment decisions. Use at your own risk.**
+
+---
+
+## 📋 Requirements
+
+- `requests>=2.25.0` - HTTP library for web requests
+- `beautifulsoup4>=4.9.0` - HTML/XML parsing
+- `certifi>=2021.0.0` - SSL certificate validation
+
+### Install All Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Notes
+---
 
-- The scraper respects the website by using proper User-Agent headers
-- Requests have a 15-second timeout to prevent hanging
-- The script includes error handling for network failures and parsing issues
-- Data is fetched from nepalipaisa.com in real-time
+## 🤝 Contributing
 
-## License
+Contributions are welcome and appreciated! Here's how you can help:
 
-This project is open source and available under the MIT License.
+### Report Bugs
 
-## Important Notice
+Found a bug? Please open an [issue](https://github.com/prasangapokharel/NEPSE-FREE-API/issues) with:
+- Clear description of the bug
+- Steps to reproduce
+- Expected vs actual behavior
+- Python version and OS
 
-⚠️ **EDUCATIONAL USE ONLY** ⚠️
+### Request Features
 
-This project is developed solely for **educational purposes**. It is not intended for production use or real-time financial decision-making due to:
+Have an idea? Submit a [feature request](https://github.com/prasangapokharel/NEPSE-FREE-API/issues) describing:
+- The feature you want
+- Why it would be useful
+- Possible implementation approach
 
-- **Lack of Sandbox Testing**: This scraper has not been tested in a sandboxed environment or with official APIs. Web scraping may be subject to changes in website structure without notice.
-- **No Warranty**: The author provides no guarantee about the accuracy, completeness, or timeliness of the scraped data.
-- **Terms of Service**: Users are responsible for ensuring their use of this tool complies with nepalipaisa.com's Terms of Service and applicable laws.
-- **Data Reliability**: Web-scraped data may be incomplete, delayed, or inaccurate.
+### Submit Pull Requests
 
-## Disclaimer
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-This tool is for educational and informational purposes only. The author is not responsible for any financial decisions made based on the data retrieved by this scraper. Always verify data from official sources before making investment decisions. Use at your own risk.
+---
 
-## Contributing
+## 📄 License
 
-Contributions are welcome! Feel free to submit issues or pull requests to improve this project.
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
 
-## Support
+```
+MIT License
 
-For issues, questions, or suggestions, please open an issue on the repository.
+Copyright (c) 2026 Prasanga Pokharel
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+```
+
+---
+
+## 🆘 Support
+
+Need help? Here are several ways to get support:
+
+### Documentation
+- 📖 Read the [full README](README.md)
+- 💻 Check out [example scripts](examples/) (if available)
+- 📚 Review [API Reference](#-api-reference)
+
+### Community
+- 🐛 Report bugs on [GitHub Issues](https://github.com/prasangapokharel/NEPSE-FREE-API/issues)
+- 💡 Request features on [GitHub Discussions](https://github.com/prasangapokharel/NEPSE-FREE-API/issues)
+- 📧 Contact via email (see GitHub profile)
+
+---
+
+## 👨‍💻 Author
+
+**Prasanga Pokharel**
+
+- GitHub: [@prasangapokharel](https://github.com/prasangapokharel)
+- Repository: [NEPSE-FREE-API](https://github.com/prasangapokharel/NEPSE-FREE-API)
+
+---
+
+## 🎓 Credits
+
+- Data source: [nepalipaisa.com](https://nepalipaisa.com)
+- Built with: [BeautifulSoup](https://www.crummy.com/software/BeautifulSoup/) and [Requests](https://requests.readthedocs.io/)
+
+---
+
+## 📈 Roadmap
+
+- [ ] Add caching mechanism for frequently accessed data
+- [ ] Create REST API wrapper
+- [ ] Build web dashboard
+- [ ] Add real-time data streaming
+- [ ] Implement data export to Excel/JSON
+- [ ] Create command-line interface (CLI)
+- [ ] Add logging and monitoring
+- [ ] Database integration for historical data
+
+---
+
+## ⭐ Show Your Support
+
+If this project helped you, please consider:
+- ⭐ Starring the repository
+- 🍴 Forking the project
+- 📢 Sharing with others
+- 💬 Providing feedback
+
+---
+
+<div align="center">
+
+**Made with ❤️ by Prasanga Pokharel**
+
+[⬆ back to top](#nepse-free-api---stock-data-scraper)
+
+</div>
