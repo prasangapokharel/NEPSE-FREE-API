@@ -95,7 +95,15 @@ python main.py
 
 This will fetch and display ADBL stock data by default.
 
-### Sample Output
+## Demo
+
+### Live Terminal Output
+
+The script provides clean, formatted output directly in your terminal:
+
+![ADBL Stock Data Demo](demo/output.png)
+
+### Output Example
 
 ```
 === ADBL Stock Data (as of latest scrape) ===
