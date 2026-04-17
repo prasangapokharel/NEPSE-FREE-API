@@ -101,7 +101,7 @@ This will fetch and display ADBL stock data by default.
 
 The script provides clean, formatted output directly in your terminal:
 
-![ADBL Stock Data Demo](demo/output.png)
+![ADBL Stock Data Demo](demo/nepsefreeapi.png)
 
 ### Output Example
 
